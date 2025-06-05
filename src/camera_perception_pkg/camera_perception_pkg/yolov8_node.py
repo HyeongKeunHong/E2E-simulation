@@ -12,7 +12,7 @@
 
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
+import cv2
 
 from typing import List, Dict
 
@@ -124,6 +124,7 @@ class Yolov8Node(LifecycleNode):
         self._sub = self.create_subscription(
             Image,
             "camera/image_raw",
+            #"image_raw",
             self.image_cb,
             self.image_qos_profile
         )
@@ -249,9 +250,10 @@ class Yolov8Node(LifecycleNode):
         print(msg.header)
 
         if self.enable:
-
+            
             # convert image + predict
             cv_image = self.cv_bridge.imgmsg_to_cv2(msg)
+            cv_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)
             results = self.yolo.predict(
                 source=cv_image,
                 verbose=False,

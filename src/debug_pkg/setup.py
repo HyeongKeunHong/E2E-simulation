@@ -23,6 +23,8 @@ setup(
             'path_visualizer_node = debug_pkg.path_visualizer_node:main',	
             'yolov8_visualizer_node = debug_pkg.yolov8_visualizer_node:main',	
             'image_saver_node = debug_pkg.image_saver_node:main',	
+			'data_collection_node = debug_pkg.data_collection_node:main',	
+			'pose_stamping_node = debug_pkg.pose_stamping_node:main',	
         ],
     },
 )

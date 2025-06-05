@@ -16,7 +16,7 @@ class Config: # 자주 바뀌는 항목들
     LANE2_CLASS_NAME = "lane2" # lane2 rrline
     
     # 주행 관련 설정
-    SPEED = 50    # 속도
+    SPEED = 100    # 속도
     MAX_SPEED = 5  # 최대 속도 (m/s)
 
     # 디버깅 관련 설정

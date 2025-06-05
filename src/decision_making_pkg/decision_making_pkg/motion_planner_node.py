@@ -112,9 +112,9 @@ class MotionPlanningNode(Node):
                 else:
                     self.steering_command = 0
 
-
-            self.left_speed_command = 0  # 예시 속도 값 (255가 최대 속도)
-            self.right_speed_command = 0  # 예시 속도 값 (255가 최대 속도)
+                self.steering_command = convert_steeringangle2command(83,target_slope)
+            self.left_speed_command = 100  # 예시 속도 값 (255가 최대 속도)
+            self.right_speed_command = 100  # 예시 속도 값 (255가 최대 속도)
 
 
 
@@ -142,3 +142,14 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
+
+def convert_steeringangle2command(max_target_angle, target_angle):
+   
+    f = lambda x : 7/(max_target_angle**3)*(x**3) #64000
+    ret_direction = round(f(target_angle))
+  
+    ret_direction = 7 if ret_direction >= 7 else ret_direction
+    ret_direction = -7 if ret_direction <= -7 else ret_direction
+    #print('angle_control_direction: ', ret_direction)
+    return ret_direction
